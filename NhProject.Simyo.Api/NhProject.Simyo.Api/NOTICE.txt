@@ -1,0 +1,15 @@
+﻿
+   NhProject - Alberto Ferrero López
+   Copyright 2014
+
+   This software uses the next libraries:
+
+   Newtonsoft.Json - http://james.newtonking.com/json
+   For Json decode process
+
+   Portable.BouncyCastle - https://github.com/onovotny/BouncyCastle-PCL
+   For encrypt process
+
+   RestSharp - http://restsharp.org/
+   For comunication with Simyo Rest Api
+
