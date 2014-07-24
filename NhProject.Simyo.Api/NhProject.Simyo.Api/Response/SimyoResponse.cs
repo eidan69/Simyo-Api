@@ -26,39 +26,46 @@ namespace NhProject.Simyo.Api.Response
     public abstract class SimyoResponse
     {
         public Header Header;
-        public bool Success;
+        public bool Success = false;
         private string _rawResponse;
 
         public SimyoResponse(string json)
         {
             //En el constructor de MainReponse comprobamos la integridad e inicializamos el header
             //http://james.newtonking.com/json/help/index.html
-            JObject jsonLinq = JObject.Parse(json);
-            if (checkHeaderIntegrity(jsonLinq))
+            try
             {
-                //Integridad de datos correcta
-                Header = JsonConvert.DeserializeObject<Response.Header>(jsonLinq["header"].ToString());
-
-                //Analizamos los datos  de la respuesta
-                if (Header.code == "100")
+                JObject jsonLinq = JObject.Parse(json);
+                if (checkHeaderIntegrity(jsonLinq))
                 {
-                    //Segun Simyo todo está bien, comprobamos si tenemos lo que necesitamos
-                    Success = checkResponseIntegrity(jsonLinq);
-                    if (Success == false)
+                    //Integridad de datos correcta
+                    Header = JsonConvert.DeserializeObject<Response.Header>(jsonLinq["header"].ToString());
+
+                    //Analizamos los datos  de la respuesta
+                    if (Header.code == "100")
                     {
-                        Header.code = "NH002"; //Establecemos un código propio para indicar que hay un error en el cuerpo
+                        //Segun Simyo todo está bien, comprobamos si tenemos lo que necesitamos
+                        Success = checkResponseIntegrity(jsonLinq);
+                        if (Success == false)
+                        {
+                            Header.code = "NH002"; //Establecemos un código propio para indicar que hay un error en el cuerpo
+                        }
                     }
                 }
                 else
                 {
-                    Success = false;
+                    //Integridad errónea
+                    Header = new Header();
+                    Header.code = "NH001"; //Establecemos un código propio para indicar que hay un error en la cabecera
                 }
             }
-            else
+            catch (Exception exception)
             {
-                //Integridad errónea
+                //Error en la conexión
                 Header = new Header();
-                Header.code = "NH001"; //Establecemos un código propio para indicar que hay un error en la cabecera
+                Header.code = "NH003"; //Establecemos un código propio para indicar que hay un error en la conexión
+                //TODO enviar el mensaje de la excepción
+                
             }
 
             //Guardamos la consulta en bruto
@@ -167,6 +174,9 @@ namespace NhProject.Simyo.Api.Response
                 case "NH001":
                 case "NH002":
                     to_return = "Parece que Simyo ha tocado algo y no ha devuelto lo que esperábamos. Ya estamos trabajando en ello.";
+                    break;
+                case "NH003":
+                    to_return = "Es posible que el servidor de Simyo esté caido, no conseguimos que responda. Prueba en unos minutos.";
                     break;
                 default:
                     to_return = "Error genérico no identificado";
