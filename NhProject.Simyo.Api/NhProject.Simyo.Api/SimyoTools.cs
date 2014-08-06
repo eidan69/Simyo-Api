@@ -102,5 +102,33 @@ namespace NhProject.Simyo.Api
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
         }
+
+        /// <summary>
+        /// Dado una cantidad, la redondea y devuelve un string con la moneda
+        /// </summary>
+        /// <param name="quantity"></param>
+        /// <param name="currency"></param>
+        /// <returns></returns>
+        public static string getPrice(double quantity, string currency = "€")
+        {
+            //Redondeamos el precio
+            quantity = Math.Round(quantity, 2);
+            //Convertimos a string
+            string finalResult = Convert.ToString(quantity)+" "+currency;
+            return finalResult;
+        }
+
+        /// <summary>
+        /// Dada una cantidad, la redondea y devuelve un string con la moneda
+        /// </summary>
+        /// <param name="quantity"></param>
+        /// <param name="currency"></param>
+        /// <returns></returns>
+        public static string getPrice(string quantity, string currency = "€")
+        {
+            //Convertimos a double
+            double quantity_double = Convert.ToDouble(quantity);
+            return SimyoTools.getPrice(quantity_double, currency);
+        }
     }
 }
