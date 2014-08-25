@@ -20,7 +20,6 @@ using System.Threading.Tasks;
 using Org.BouncyCastle.Crypto.Parameters;
 using RestSharp;
 using Org.BouncyCastle.Security;
-using System.Text;
 using NhProject.Simyo.Api.Response;
 using NhProject.Simyo.Api.Response.Objects;
 

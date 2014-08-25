@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhProject.Simyo.Api", "NhProject.Simyo.Api\NhProject.Simyo.Api.csproj", "{C33844E9-B85A-4B3B-9F81-4AA277CB0891}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{047C0B1F-D5DD-4CD1-BAA4-1AE269005B97}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhProject.Simyo.ApiSpecs", "NhProject.Simyo.ApiSpecs\NhProject.Simyo.ApiSpecs.csproj", "{FA60608E-675C-4BB1-B9BF-3088BCDDBE75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,10 @@ Global
 		{C33844E9-B85A-4B3B-9F81-4AA277CB0891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C33844E9-B85A-4B3B-9F81-4AA277CB0891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C33844E9-B85A-4B3B-9F81-4AA277CB0891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA60608E-675C-4BB1-B9BF-3088BCDDBE75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA60608E-675C-4BB1-B9BF-3088BCDDBE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA60608E-675C-4BB1-B9BF-3088BCDDBE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA60608E-675C-4BB1-B9BF-3088BCDDBE75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
