@@ -127,9 +127,11 @@ namespace NhProject.Simyo.Api
         public static string getPrice(string quantity, string currency = "€")
         {
             //Cambiamos punto por coma
-            quantity = quantity.Replace(",", ".");
+            quantity = quantity.Replace(".", ","); 
             //Convertimos a double
-            double quantity_double = Convert.ToDouble(quantity);
+            double quantity_double;
+            if (!double.TryParse(quantity, out quantity_double))
+                quantity_double = 0;
             return SimyoTools.getPrice(quantity_double, currency);
         }
     }
